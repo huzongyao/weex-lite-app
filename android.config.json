@@ -1,0 +1,6 @@
+{
+  "AppName":"BuiWeexApp",
+  "AppId":"com.bingo.weex",
+  "SplashText":"Hello\nWeex",
+  "WeexBundle":"index.js"
+}
