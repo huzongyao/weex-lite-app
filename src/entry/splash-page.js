@@ -1,4 +1,4 @@
-import App from 'src/views/App'
+import App from 'src/views/splash/SplashPage'
 import buiweex from 'bui-weex';
 
 Vue.use(buiweex);

@@ -10,12 +10,12 @@
   "author": "huzongyao",
   "repository": {
     "type": "git",
-    "url": "https://github.com/bingo-oss/bui-weex-template.git"
+    "url": "https://github.com/huzongyao/weex-lite-app.git"
   },
   "bugs": {
-    "url": "https://github.com/bingo-oss/bui-weex-template/issues"
+    "url": "https://github.com/huzongyao/weex-lite-app/issues"
   },
-  "homepage": "https://github.com/bingo-oss/bui-weex-template",
+  "homepage": "https://github.com/huzongyao/weex-lite-app",
   "scripts": {
     "start": "npm run serve",
     "build": "webpack --env.NODE_ENV=common",
@@ -71,7 +71,7 @@
     "vue-style-loader": "^3.0.3",
     "vue-template-compiler": "^2.5.11",
     "webpack": "^3.10.0",
-    "webpack-dev-server": "^2.9.7",
+    "webpack-dev-server": "2.9.7",
     "webpack-merge": "^4.1.0",
     "weex-loader": "^0.7.2",
     "weex-vue-precompiler": "^0.1.17"

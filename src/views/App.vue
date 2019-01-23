@@ -9,18 +9,19 @@
 
 <script>
   const globalEvent = weex.requireModule('globalEvent');
+  import CommonMix from '../mixins/common'
+
   module.exports = {
+    mixins: [CommonMix],
     data() {
       return {}
     },
     mounted() {
-      globalEvent.addEventListener("androidback", () => {
-        this.$pop();
-      });
+      this._registerBackListener();
     },
     methods: {
       jumpTo() {
-        this.$toast('it worked!')
+        this.$push('splash-page.js');
       }
     }
   }
