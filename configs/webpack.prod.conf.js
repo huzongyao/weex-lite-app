@@ -9,43 +9,47 @@ const helper = require('./helper');
 /**
  * Webpack Plugins
  */
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('webpack-uglify-parallel');
 
 /**
  * Webpack configuration for weex.
  */
 const weexConfig = webpackMerge(commonConfig[1], {
+  /*
+	 * Add additional plugins to the compiler.
+	 *
+	 * See: http://webpack.github.io/docs/configuration.html#plugins
+	 */
+  plugins: [
     /*
-     * Add additional plugins to the compiler.
-     *
-     * See: http://webpack.github.io/docs/configuration.html#plugins
-     */
-    plugins: [
-      /*
-      * uglifyjs-webpack-plugin,与webpack-uglify-parallel使用方式类似，优势在于完全兼容webpack.optimize.UglifyJsPlugin中的配置，可以通过uglifyOptions写入，因此也做为推荐使用
-      *
-      * See: https://www.npmjs.com/package/uglifyjs-webpack-plugin
-      */
-      new UglifyJsPlugin({
-        uglifyOptions: {
-            ie8: false,
-            ecma: 8,
-            mangle: true,
-            output: { comments: false },
-            compress: { warnings: false }
-        },
-        sourceMap: false,
-        cache: true,
-        parallel: os.cpus().length * 2
-      }),
-      // Need to run uglify first, then pipe other webpack plugins
-      ...commonConfig[1].plugins
-    ]
+		* uglifyjs-webpack-plugin,与webpack-uglify-parallel使用方式类似，优势在于完全兼容webpack.optimize.UglifyJsPlugin中的配置，可以通过uglifyOptions写入，因此也做为推荐使用
+		*
+		* See: https://www.npmjs.com/package/uglifyjs-webpack-plugin
+		*/
+    new UglifyJsPlugin({
+      uglifyOptions: {
+        ie8: false,
+        ecma: 8,
+        mangle: true,
+        output: {comments: false},
+        compressor: {
+          warnings: false,
+          drop_console: true,
+          drop_debugger: true
+        }
+      },
+      sourceMap: false,
+      cache: true,
+      parallel: os.cpus().length * 2
+    }),
+    // Need to run uglify first, then pipe other webpack plugins
+    ...commonConfig[1].plugins
+  ]
 })
 
 /**
-* Webpack configuration for web.
-*/
+ * Webpack configuration for web.
+ */
 const webConfig = webpackMerge(commonConfig[0], {
   /**
    * Developer tool to enhance debugging
@@ -89,7 +93,7 @@ const webConfig = webpackMerge(commonConfig[0], {
   plugins: [
     /**
      * Plugin: webpack.DefinePlugin
-     * Description: The DefinePlugin allows you to create global constants which can be configured at compile time. 
+     * Description: The DefinePlugin allows you to create global constants which can be configured at compile time.
      *
      * See: https://webpack.js.org/plugins/define-plugin/
      */
@@ -99,17 +103,22 @@ const webConfig = webpackMerge(commonConfig[0], {
       }
     }),
     /*
-    * uglifyjs-webpack-plugin,与webpack-uglify-parallel使用方式类似，优势在于完全兼容webpack.optimize.UglifyJsPlugin中的配置，可以通过uglifyOptions写入，因此也做为推荐使用
+    * uglifyjs-webpack-plugin,与webpack-uglify-parallel使用方式类似，
+    * 优势在于完全兼容webpack.optimize.UglifyJsPlugin中的配置，可以通过uglifyOptions写入，因此也做为推荐使用
     *
     * See: https://www.npmjs.com/package/uglifyjs-webpack-plugin
     */
     new UglifyJsPlugin({
       uglifyOptions: {
-          ie8: false,
-          ecma: 8,
-          mangle: true,
-          output: { comments: false },
-          compress: { warnings: false }
+        ie8: false,
+        ecma: 8,
+        mangle: true,
+        output: {comments: false},
+        compressor: {
+          warnings: false,
+          drop_console: true,
+          drop_debugger: true
+        }
       },
       sourceMap: false,
       cache: true,

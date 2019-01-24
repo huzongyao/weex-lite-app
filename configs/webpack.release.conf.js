@@ -13,18 +13,18 @@ console.log(`${chalk.green(`Package web project at ${chalk.bold(path.resolve('./
 /**
  * Webpack Plugins
  */
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const UglifyJsPlugin = require('webpack-uglify-parallel');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ScriptExtHtmlWebpackPlugin = require('script-ext-html-webpack-plugin');
 
 /**
  * Generate multiple entrys
- * @param {Array} entry 
+ * @param {Array} entry
  */
 const generateMultipleEntrys = (entry) => {
   let entrys = Object.keys(entry);
   // exclude vendor entry.
-  entrys = entrys.filter(entry => entry !== 'vendor' );
+  entrys = entrys.filter(entry => entry !== 'vendor');
   const htmlPlugin = entrys.map(name => {
     return new HtmlWebpackPlugin({
       filename: name + '.html',
@@ -93,7 +93,7 @@ const productionConfig = webpackMerge(commonConfig[0], {
   plugins: [
     /**
      * Plugin: webpack.DefinePlugin
-     * Description: The DefinePlugin allows you to create global constants which can be configured at compile time. 
+     * Description: The DefinePlugin allows you to create global constants which can be configured at compile time.
      *
      * See: https://webpack.js.org/plugins/define-plugin/
      */
@@ -139,16 +139,16 @@ const productionConfig = webpackMerge(commonConfig[0], {
     * See: https://www.npmjs.com/package/uglifyjs-webpack-plugin
     */
     new UglifyJsPlugin({
-        uglifyOptions: {
-            ie8: false,
-            ecma: 8,
-            mangle: true,
-            output: { comments: false },
-            compress: { warnings: false }
-        },
-        sourceMap: false,
-        cache: true,
-        parallel: os.cpus().length * 2
+      uglifyOptions: {
+        ie8: false,
+        ecma: 8,
+        mangle: true,
+        output: {comments: false},
+        compress: {warnings: false}
+      },
+      sourceMap: false,
+      cache: true,
+      parallel: os.cpus().length * 2
     }),
   ]
 });
@@ -189,16 +189,16 @@ const weexConfig = webpackMerge(commonConfig[1], {
     * See: https://www.npmjs.com/package/uglifyjs-webpack-plugin
     */
     new UglifyJsPlugin({
-        uglifyOptions: {
-            ie8: false,
-            ecma: 8,
-            mangle: true,
-            output: { comments: false },
-            compress: { warnings: false }
-        },
-        sourceMap: false,
-        cache: true,
-        parallel: os.cpus().length * 2
+      uglifyOptions: {
+        ie8: false,
+        ecma: 8,
+        mangle: true,
+        output: {comments: false},
+        compress: {warnings: false}
+      },
+      sourceMap: false,
+      cache: true,
+      parallel: os.cpus().length * 2
     }),
   ]
 })
