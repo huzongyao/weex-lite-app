@@ -1,0 +1,63 @@
+<template>
+  <div style="flex: 1">
+    <slider class="slider" @change="onSliderChange" :index="currentTab" infinite="false" scrollable="false">
+      <component :is="item.view" class="slider-item" v-for="(item, idx) in tabItems" :key="idx"/>
+    </slider>
+    <div class="tab-divider"></div>
+    <bui-tabbar :tabItems="tabItems" @change="onItemChange" v-model="currentTab"
+                background="#f9f9f9" selectedBackground="#f9f9f9"></bui-tabbar>
+  </div>
+</template>
+
+<script>
+  const globalEvent = weex.requireModule('globalEvent');
+  import MixCommon from '../../mixins/common'
+  import TabMine from './tabs/TabMine'
+  import TabHome from './tabs/TabHome'
+  import TabExplore from './tabs/TabExplore'
+  import TabLife from './tabs/TabLife'
+
+  export default {
+    name: "main-page",
+    components: {TabMine, TabHome, TabExplore, TabLife},
+    mixins: [MixCommon],
+    data() {
+      return {
+        currentTab: 0,
+        tabItems: [
+          {icon: "ion-home", title: "首页", view: 'tab-home'},
+          {icon: "ion-planet", title: "探索", view: 'tab-explore'},
+          {icon: "ion-heart", title: "生活", view: 'tab-life'},
+          {icon: "ion-android-person", title: "我的", view: 'tab-mine'}
+        ]
+      }
+    },
+    methods: {
+      onItemChange(index) {
+      },
+      onSliderChange(e) {
+        this.currentTab = e.index;
+      }
+    },
+    mounted() {
+      this._registerBackListener();
+    }
+  }
+</script>
+
+<style lang="scss" src="bui-weex/src/css/buiweex.scss"></style>
+<style scoped>
+  .tab-divider {
+    height: 1px;
+    background-color: #eeeeee;
+  }
+
+  .slider {
+    flex: 1;
+  }
+
+  .slider-item {
+    width: 750px;
+    background-color: #f1f1f1;
+  }
+</style>
