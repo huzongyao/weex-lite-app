@@ -15,15 +15,16 @@ npm run build:prod
 #### 快速体验
 1. 使用Weex playground扫描二维码体验：
 
-![image](https://raw.githubusercontent.com/hzy3774/weex-lite-app/master/misc/qr_splash_page.png)
+![image](https://github.com/huzongyao/weex-lite-app/blob/master/misc/qr_splash_page.png?raw=true)
 
 2. js打包入口地址：https://huzongyao.github.io/weex-lite-app/assets/splash-page.js
+3. 可以下载我的WeexApp体验(类似于Weex playground)：https://github.com/huzongyao/WeexAppFrame
 
-
-* 相关链接：
+### 相关链接：
  1. weex：http://weex-project.io/cn/references/
  2. bui-weex: http://dev.bingocc.com/buiweex/docs/
  3. bui-weex-sample示例库 https://github.com/bingo-oss/bui-weex-sample
+ 4. weex-ui: https://alibaba.github.io/weex-ui/#/
 
 ### About Me
  * GitHub: [http://huzongyao.github.io/](http://huzongyao.github.io/)
