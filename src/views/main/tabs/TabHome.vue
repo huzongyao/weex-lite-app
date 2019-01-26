@@ -18,8 +18,9 @@
     data() {
       return {
         iconApps: [
-          {name: '知乎日报', icon: 'ion-social-rss-outline', link: 'zhihu-main.js'},
-          {name: '推酷', icon: 'ion-social-tumblr-outline', link: 'tuiku-main.js'},
+          {name: '之乎日报', icon: 'ion-social-rss-outline', link: 'zhihu-main.js'},
+          {name: '推库', icon: 'ion-social-tumblr-outline', link: 'tuiku-main.js'},
+          {name: '果柯精选', icon: 'ion-bonfire', link: 'guoke-main.js'},
         ]
       }
     },

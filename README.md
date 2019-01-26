@@ -11,6 +11,15 @@ npm run start
 npm run build:prod
 ```
 
+### 详情
+#### 快速体验
+1. 使用Weex playground扫描二维码体验：
+
+![image](https://raw.githubusercontent.com/hzy3774/weex-lite-app/master/misc/qr_splash_page.png)
+
+2. js打包入口地址：https://huzongyao.github.io/weex-lite-app/assets/splash-page.js
+
+
 * 相关链接：
  1. weex：http://weex-project.io/cn/references/
  2. bui-weex: http://dev.bingocc.com/buiweex/docs/
