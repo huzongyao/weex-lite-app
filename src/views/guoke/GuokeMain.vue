@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #f1f1f1">
-    <bui-header title="果柯精选" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
+    <bui-header title="裹壳精选" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
     <bui-dropload @loading="loadNextPage" @refresh="refreshPage" class="drop-loader">
       <cell>
         <slider class="banner-slider" interval="5000" auto-play="true">

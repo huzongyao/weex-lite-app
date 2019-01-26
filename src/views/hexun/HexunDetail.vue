@@ -9,15 +9,11 @@
   const globalEvent = weex.requireModule('globalEvent');
 
   export default {
-    name: "tuiku-detail",
+    name: "hexun-detail",
     data() {
       return {
-        URL_ARTICLE_DETAIL: 'http://api.tuicool.com/api/articles/',
-        COMMON_HEADERS: {
-          'user-agent': 'android/103/M9/23/4',
-          'Authorization': 'Basic MC4wLjAuMDp0dWljb29s',
-        },
-        pageTitle: '推库',
+        URL_ARTICLE_DETAIL: 'http://wapi.hexun.com/AppV5_commonNewsDetail.cc?newsId=',
+        pageTitle: '河汛热点',
         leftItem: {
           icon: 'ion-android-arrow-back'
         },
@@ -35,18 +31,19 @@
           return
         }
         this.$get({
-          url: this.URL_ARTICLE_DETAIL + this.articleId + '.json?need_image_meta=1&type=1',
-          headers: this.COMMON_HEADERS,
+          url: this.URL_ARTICLE_DETAIL + this.articleId,
         }).then(res => {
-          let article = res.article;
+          let article = res.datas.news;
           this.pageTitle = article.title;
           this.webSource = '<!DOCTYPE html>'
-            + '<html><head><meta charset="utf-8">'
-            + '<meta name="weex-viewport" content="750">'
-            + '<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">'
-            + '<meta name="format-detection" content="telephone=no, email=no" /><head>'
-            + '<style>.alignCenter{width: 100%}</style>'
+            + '<html><head>'
+            + '<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">'
+            + '<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0,viewport-fit=cover">'
+            + '<meta name="apple-mobile-web-app-capable" content="yes">'
+            + '<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />'
+            + '<style>img{width: 100%}</style>'
             + '</head><body>'
+            + '<h2>' + article.title + '</h2>'
             + article.content
             + '</body></html>';
         }).catch(() => {

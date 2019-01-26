@@ -13,7 +13,7 @@
     data() {
       return {
         URL_STORY_DETAIL: 'https://news-at.zhihu.com/api/4/story/',
-        pageTitle: '知乎日报',
+        pageTitle: '之乎日报',
         leftItem: {
           icon: 'ion-android-arrow-back'
         },

@@ -1,11 +1,11 @@
 <template>
   <div style="background-color: #f1f1f1">
-    <bui-header title="推库" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
+    <bui-header title="河汛热点" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
     <bui-dropload @loading="fetchHotArticles" @refresh="refreshArticles">
       <cell v-for="item in articleList">
         <div class="flex-row list-item" @click="onItemClick(item)">
-          <bui-image class="list-img" :src="item.img" resize="contain" @click="onItemClick(item)"></bui-image>
-          <text class="h3 span1 list-title">{{item.title}}</text>
+          <bui-image class="list-img" :src="item.img" resize="cover" @click="onItemClick(item)"></bui-image>
+          <text class="h4 span1 list-title">{{item.title}}</text>
         </div>
       </cell>
     </bui-dropload>
@@ -18,20 +18,19 @@
   import {WxcLoading} from 'weex-ui';
 
   export default {
-    name: "tuiku-main",
+    name: "hexun-main",
     components: {WxcLoading},
     data() {
       return {
-        URL_GET_HOT: 'http://api.tuicool.com/api/articles/hot.json',
-        COMMON_HEADERS: {
-          'user-agent': 'android/103/M9/23/4',
-          'Authorization': 'Basic MC4wLjAuMDp0dWljb29s',
+        urls: {
+          listFirst: 'http://wapi.hexun.com/AppPopUp_getHotPointNews.cc?pn=0',
+          listFollow: 'http://wapi.hexun.com/AppPopUp_getHotPointNews.cc?pn=2&newstime='
         },
         leftItem: {
           icon: 'ion-android-arrow-back'
         },
         articleList: [],
-        listLastId: null,
+        newTime: null,
         showLoading: false,
       }
     },
@@ -42,24 +41,19 @@
     methods: {
       // 接着上一次加载
       fetchHotArticles(next) {
-        let params = {size: 30, lang: 1, cid: 0, is_pad: 1};
-        if (this.listLastId) {
-          params.last_id = this.listLastId;
-        }
+        let url = this.newTime ? this.urls.listFollow + this.newTime : this.urls.listFirst;
         this.$get({
-          url: this.URL_GET_HOT,
-          headers: this.COMMON_HEADERS,
-          data: params,
+          url: url,
         }).then(res => {
-          let articles = res.articles;
+          let articles = res.datas;
           if (articles && articles.length > 0) {
-            if (!this.listLastId) {
+            if (!this.newTime) {
               this.articleList = articles;
             } else {
               this.articleList = this.articleList.concat(articles);
             }
-            let lastItem = articles[articles.length - 1];
-            this.listLastId = lastItem.id;
+            let params = this.parseParams(res.param);
+            this.newTime = params.timestamp1;
           }
           next && next();
           this.showLoading = false;
@@ -68,13 +62,22 @@
           this.showLoading = false;
         });
       },
+      parseParams(str) {
+        let strs = str.split("&");
+        let ret = {};
+        for (let i in strs) {
+          let ps = strs[i].split("=");
+          ret[ps[0]] = ps[1];
+        }
+        return ret;
+      },
       // 从头加载
       refreshArticles(next) {
-        this.listLastId = null;
+        this.newTime = null;
         this.fetchHotArticles(next);
       },
       onItemClick(item) {
-        this.$push('tuiku-detail.js', {id: item.id})
+        this.$push('hexun-detail.js', {id: item.id})
       }
     }
   }
@@ -94,14 +97,14 @@
   }
 
   .list-img {
-    width: 190px;
-    height: 120px;
+    width: 200px;
+    height: 140px;
     background-color: #dddddd;
     border-radius: 4px;
   }
 
   .list-title {
     margin-left: 25px;
-    font-size: 35px;
+    font-size: 32px;
   }
 </style>

@@ -5,7 +5,7 @@
       <div class="flex-row flex-fluid row-apps">
         <div v-for="(item, idx) in iconApps" :key="idx" class="center app-item">
           <bui-icon :name="item.icon" size=96 class="icon-btn" color="white" @click="$push(item.link)"></bui-icon>
-          <text class="h5 app-title">{{item.name}}</text>
+          <text class="app-title">{{item.name}}</text>
         </div>
       </div>
     </scroller>
@@ -20,7 +20,8 @@
         iconApps: [
           {name: '之乎日报', icon: 'ion-social-rss-outline', link: 'zhihu-main.js'},
           {name: '推库', icon: 'ion-social-tumblr-outline', link: 'tuiku-main.js'},
-          {name: '果柯精选', icon: 'ion-bonfire', link: 'guoke-main.js'},
+          {name: '裹壳精选', icon: 'ion-bonfire', link: 'guoke-main.js'},
+          {name: '河汛热点', icon: 'ion-arrow-graph-up-right', link: 'hexun-main.js'},
         ]
       }
     },
@@ -33,16 +34,18 @@
 <style lang="scss" src="bui-weex/src/css/buiweex.scss"></style>
 <style scoped>
   .row-apps {
-    margin: 30px 15px;
   }
 
   .app-item {
-    width: 180px;
-    height: 180px;
+    margin-top: 30px;
+    width: 187.5px;
   }
 
   .app-title {
-    margin-top: 10px;
+    font-size: 26px;
+    margin-top: 4px;
+    line-height: 40px;
+    color: #464c5b;
   }
 
   .icon-btn {

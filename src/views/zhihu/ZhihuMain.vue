@@ -1,6 +1,6 @@
 <template>
   <div style="background-color: #f1f1f1">
-    <bui-header title="知乎日报" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
+    <bui-header title="之乎日报" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
     <bui-dropload @loading="loadNextPage" @refresh="fetchLatest" class="drop-loader">
       <cell>
         <slider class="banner-slider" interval="5000" auto-play="true">

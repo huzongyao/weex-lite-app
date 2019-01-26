@@ -10,7 +10,7 @@
     name: "guoke-detail",
     data() {
       return {
-        pageTitle: '果柯精选',
+        pageTitle: '裹壳精选',
         leftItem: {
           icon: 'ion-android-arrow-back'
         },
