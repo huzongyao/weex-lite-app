@@ -18,14 +18,17 @@
         </div>
       </cell>
     </bui-dropload>
+    <wxc-loading :show="showLoading"></wxc-loading>
   </div>
 </template>
 
 <script>
   const globalEvent = weex.requireModule('globalEvent');
+  import {WxcLoading} from 'weex-ui';
 
   export default {
     name: "zhihu-main",
+    components: {WxcLoading},
     data() {
       return {
         URL_GET_LATEST: 'https://news-at.zhihu.com/api/4/stories/latest',
@@ -36,9 +39,11 @@
         bannerList: [],
         storyList: [],
         currentDate: '',
+        showLoading: false,
       };
     },
     mounted() {
+      this.showLoading = true;
       this.fetchLatest();
     },
     methods: {
@@ -53,8 +58,10 @@
           this.currentDate = res.date;
           this.storyList = res.stories;
           next && next();
+          this.showLoading = false;
         }).catch(() => {
           next && next();
+          this.showLoading = false;
         });
       },
       loadNextPage(next) {

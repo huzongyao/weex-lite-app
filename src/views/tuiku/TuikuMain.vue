@@ -9,14 +9,17 @@
         </div>
       </cell>
     </bui-dropload>
+    <wxc-loading :show="showLoading"></wxc-loading>
   </div>
 </template>
 
 <script>
   const globalEvent = weex.requireModule('globalEvent');
+  import {WxcLoading} from 'weex-ui';
 
   export default {
     name: "tuiku-main",
+    components: {WxcLoading},
     data() {
       return {
         URL_GET_HOT: 'http://api.tuicool.com/api/articles/hot.json',
@@ -29,9 +32,11 @@
         },
         articleList: [],
         listLastId: null,
+        showLoading: false,
       }
     },
     mounted() {
+      this.showLoading = true;
       this.refreshArticles()
     },
     methods: {
@@ -57,8 +62,10 @@
             this.listLastId = lastItem.id;
           }
           next && next();
+          this.showLoading = false;
         }).catch(() => {
           next && next();
+          this.showLoading = false;
         });
       },
       // 从头加载

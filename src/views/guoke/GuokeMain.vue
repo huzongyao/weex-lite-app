@@ -17,13 +17,17 @@
           <text class="h4 span1 list-title">{{item.title}}</text>
         </div>
       </cell>
+      <wxc-loading :show="showLoading"></wxc-loading>
     </bui-dropload>
   </div>
 </template>
 
 <script>
+  import {WxcLoading} from 'weex-ui';
+
   export default {
     name: "guoke-main",
+    components: {WxcLoading},
     data() {
       return {
         urls: {
@@ -37,9 +41,11 @@
         bannerList: [],
         articleList: [],
         listLastId: null,
+        showLoading: false,
       };
     },
     mounted() {
+      this.showLoading = true;
       this.refreshPage()
     },
     methods: {
@@ -59,8 +65,10 @@
             this.listLastId = lastItem.id;
           }
           next && next();
+          this.showLoading = false;
         }).catch(() => {
           next && next();
+          this.showLoading = false;
         });
       },
       refreshPage(next) {
