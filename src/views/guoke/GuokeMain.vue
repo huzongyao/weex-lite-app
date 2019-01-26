@@ -98,7 +98,7 @@
     margin: 10px 20px;
     padding: 16px;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #ffffff;
   }
 
   .list-item:active {
@@ -119,7 +119,7 @@
   .banner-slider {
     height: 395px;
     margin-bottom: 20px;
-    background-color: #ccc;
+    background-color: #cccccc;
   }
 
   .banner-img {
@@ -140,8 +140,8 @@
   .indicator {
     width: 300px;
     height: 20px;
-    item-color: #999;
-    item-selected-color: #fff;
+    item-color: #999999;
+    item-selected-color: #ffffff;
     item-size: 16px;
     position: absolute;
     bottom: 10px;
