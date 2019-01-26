@@ -6,7 +6,7 @@
         <bui-icon slot="label" class="left-ic" name="ion-ios-gear-outline"></bui-icon>
         <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
       </bui-cell>
-      <bui-cell title="关于" :cellStyle="cellStyle">
+      <bui-cell title="关于" :cellStyle="cellStyle" @click="$push('about-page.js')">
         <bui-icon slot="label" class="left-ic" name="ion-ios-information-outline"></bui-icon>
         <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
       </bui-cell>
