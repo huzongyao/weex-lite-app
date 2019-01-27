@@ -10,7 +10,7 @@
     name: "simple-browser",
     data() {
       return {
-        pageTitle: 'Simple Web',
+        pageTitle: '',
         leftItem: {
           icon: 'ion-android-arrow-back'
         },

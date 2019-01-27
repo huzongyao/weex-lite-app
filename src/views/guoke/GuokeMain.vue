@@ -13,7 +13,7 @@
       </cell>
       <cell v-for="item in articleList">
         <div class="flex-row list-item" @click="onItemClick(item.id)">
-          <bui-image class="list-img" :src="item.headline_img_tb" @click="onItemClick(item)"></bui-image>
+          <bui-image class="list-img" :src="item.headline_img_tb" @click="onItemClick(item.id)"></bui-image>
           <text class="h4 span1 list-title">{{item.title}}</text>
         </div>
       </cell>
