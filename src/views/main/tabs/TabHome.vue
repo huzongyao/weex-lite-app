@@ -22,6 +22,7 @@
           {name: '推库', icon: 'ion-social-tumblr-outline', link: 'tuiku-main.js'},
           {name: '裹壳精选', icon: 'ion-bonfire', link: 'guoke-main.js'},
           {name: '河汛热点', icon: 'ion-arrow-graph-up-right', link: 'hexun-main.js'},
+          {name: '网亦新闻', icon: 'ion-planet', link: 'wangyi-main.js'},
         ]
       }
     },

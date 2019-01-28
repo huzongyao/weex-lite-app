@@ -25,6 +25,9 @@ npm run build:prod
  2. bui-weex: http://dev.bingocc.com/buiweex/docs/
  3. bui-weex-sample示例库 https://github.com/bingo-oss/bui-weex-sample
  4. weex-ui: https://alibaba.github.io/weex-ui/#/
+ 
+### 声明
+本项目仅用于学习使用，项目中使用到的开源类库和第三方数据接口均来源于网络，若侵犯了您的权益，请联系我下架。
 
 ### About Me
  * GitHub: [http://huzongyao.github.io/](http://huzongyao.github.io/)

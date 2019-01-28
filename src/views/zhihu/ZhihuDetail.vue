@@ -44,6 +44,7 @@
             + '<style>.img-place-holder{background-image: url(' + res.image + ');background-size: 100%}</style>'
             + '<link rel="stylesheet" type="text/css" href="' + res.css[0] + '" />'
             + '</head><body>'
+            + '<h2 style="margin-left: 10px">' + res.title + '</h2>'
             + res.body
             + '</body></html>';
         }).catch(() => {
