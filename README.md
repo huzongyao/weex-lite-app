@@ -26,6 +26,13 @@ npm run build:prod
 | ------------- |:-------------:| ----------:|
 | ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/zhihu.gif?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/tuiku.gif?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/guoke.gif?raw=true) |
 
+#### 数据接口
+* 之乎日报：http://daily.zhihu.com/
+* GankIO：http://gank.io/
+* 推库：https://www.tuicool.com
+* 裹壳：https://www.guokr.com/
+* 河汛网：http://www.hexun.com/
+* 网亦新闻：https://news.163.com/
 
 ### 相关链接：
  1. weex：http://weex-project.io/cn/references/
