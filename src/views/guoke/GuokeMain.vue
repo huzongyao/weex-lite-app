@@ -53,6 +53,7 @@
         let url = this.listLastId ? this.urls.listFollow + this.listLastId : this.urls.listFirst;
         this.$get({
           url: url,
+          headers: {'user-agent': 'Android'},
         }).then(res => {
           let articles = res.result;
           if (articles && articles.length > 0) {

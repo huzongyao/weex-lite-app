@@ -1,6 +1,6 @@
 <template>
-  <div style="flex: 1">
-    <slider class="slider" @change="onSliderChange" :index="currentTab" infinite="false" scrollable="false">
+  <div class="span1">
+    <slider class="span1" @change="onSliderChange" :index="currentTab" infinite="false" scrollable="false">
       <component :is="item.view" class="slider-item" v-for="(item, idx) in tabItems" :key="idx"/>
     </slider>
     <div class="tab-divider"></div>
@@ -50,10 +50,6 @@
   .tab-divider {
     height: 1px;
     background-color: #eeeeee;
-  }
-
-  .slider {
-    flex: 1;
   }
 
   .slider-item {

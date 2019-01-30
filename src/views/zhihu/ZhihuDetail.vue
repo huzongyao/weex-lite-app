@@ -34,6 +34,7 @@
         this.webSource = '';
         this.$get({
           url: this.URL_STORY_DETAIL + this.storyId,
+          headers: {'user-agent': 'Android'},
         }).then(res => {
           this.pageTitle = res.title;
           this.webSource = '<!DOCTYPE html>'

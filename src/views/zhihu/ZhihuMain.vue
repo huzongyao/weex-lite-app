@@ -53,6 +53,7 @@
       fetchLatest(next) {
         this.$get({
           url: this.URL_GET_LATEST,
+          headers: {'user-agent': 'Android'},
         }).then(res => {
           this.bannerList = res.top_stories;
           this.currentDate = res.date;

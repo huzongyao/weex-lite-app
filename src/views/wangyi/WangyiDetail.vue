@@ -32,6 +32,7 @@
         }
         this.$get({
           url: this.URL_ARTICLE_DETAIL + this.articleId + '/full.html',
+          headers: {'user-agent': 'Android'},
         }).then(res => {
           let article = res[this.articleId];
           this.pageTitle = article.title;

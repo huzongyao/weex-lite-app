@@ -43,6 +43,7 @@
         let url = this.urls.newsList + (this.pageIndex * 30);
         this.$get({
           url: url,
+          headers: {'user-agent': 'Android'},
         }).then(res => {
           let articles = res.tid;
           if (articles && articles.length > 0) {

@@ -1,38 +1,36 @@
 <template>
-  <div style="background-color: #f1f1f1">
-    <bui-header title="Gank 妹纸" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
-    <waterfall @loadmore="loadMoreData" loadmoreoffset="200" column-count="2" column-gap="0">
-      <!--下拉刷新控件-->
-      <refresh class="refresh" @refresh="onPullRefresh" @pullingdown="onPullingDown"
-               :display="showRefresh ? 'show' : 'hide'">
-        <text class="refresh-text">{{refreshText}}</text>
-        <loading-indicator class="refresh-indicator"></loading-indicator>
-      </refresh>
-      <!--图片瀑布流列表-->
-      <cell v-for="(item, idx) in imageList" :key="idx">
-        <div class="flex1 center cover-box">
-          <image :src="item.url" class="cover-img" @load="onImageLoad(item, $event)"
-                 :style="{height:item.height+'px'}"></image>
-          <text class="h5 image-desc">{{item.desc}}</text>
-        </div>
-      </cell>
-    </waterfall>
-    <wxc-loading :show="showLoading"></wxc-loading>
-  </div>
+  <waterfall @loadmore="loadMoreData" loadmoreoffset="200" column-count="2" column-gap="0">
+    <!--下拉刷新控件-->
+    <refresh class="refresh" @refresh="onPullRefresh" @pullingdown="onPullingDown"
+             :display="showRefresh ? 'show' : 'hide'">
+      <text class="refresh-text">{{refreshText}}</text>
+      <loading-indicator class="refresh-indicator"></loading-indicator>
+    </refresh>
+    <!--图片瀑布流列表-->
+    <cell v-for="(item, idx) in imageList" :key="idx">
+      <div class="flex1 center cover-box">
+        <image :src="item.FaceSrc+'_300x300.jpg'" class="cover-img"></image>
+        <text class="h5 image-desc">{{item.Name}}</text>
+      </div>
+    </cell>
+    <cell>
+      <wxc-loading :show="showLoading"></wxc-loading>
+    </cell>
+  </waterfall>
 </template>
 
 <script>
   import {WxcLoading} from 'weex-ui';
 
   export default {
-    name: "meizhi-flow",
+    name: "hanfu-tab",
     components: {WxcLoading},
+    props: {
+      rankType: {type: String, default: '1'}
+    },
     data() {
       return {
-        loadUrl: 'http://gank.io/api/data/福利/20/',
-        leftItem: {
-          icon: 'ion-android-arrow-back'
-        },
+        loadUrl: 'https://api4.hanfugou.com/album/GetListForRank?count=20&ranktype=',
         showLoading: false,
         showRefresh: false,
         pageIndex: 1,
@@ -60,14 +58,11 @@
       },
       loadMoreData() {
         this.$get({
-          url: this.loadUrl + this.pageIndex,
+          url: this.loadUrl + this.rankType + '&page=' + this.pageIndex,
           headers: {'user-agent': 'Android'},
         }).then(res => {
-          let resData = res.results;
+          let resData = res.Data;
           if (resData && resData.length > 0) {
-            for (let idx = 0; idx < resData.length; idx++) {
-              resData[idx].height = 460;
-            }
             if (this.pageIndex <= 1) {
               this.imageList = resData;
             } else {
@@ -82,32 +77,25 @@
           this.showRefresh = false;
         })
       },
-      onImageLoad(item, event) {
-        if (event.success) {
-          let s = event.size;
-          if (s.naturalWidth > 0 && s.naturalHeight > 0) {
-            item.height = Math.round(s.naturalHeight * 345 / s.naturalWidth);
-          }
-        }
-      },
     }
   }
 </script>
 
 <style lang="scss" src="bui-weex/src/css/buiweex.scss"></style>
 <style scoped>
+
+  .image-desc {
+    font-size: 24px;
+    line-height: 26px;
+    margin: 0 10px 10px 10px;
+  }
+
   .refresh {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     padding-bottom: 16px;
-  }
-
-  .image-desc {
-    font-size: 24px;
-    line-height: 26px;
-    margin: 0 10px 10px 10px;
   }
 
   .refresh-text {
@@ -131,6 +119,7 @@
   .cover-img {
     background-color: #717171;
     width: 345px;
+    height: 345px;
     margin: 10px;
   }
 </style>

@@ -11,9 +11,9 @@
       <!--图片瀑布流列表-->
       <cell v-for="(item, idx) in imageList" :key="idx">
         <div class="flex1 center cover-box">
-          <image :ref='idx' :src="item.url" class="cover-img" @load="onImageLoad(item, $event)"
+          <image :src="item.url" class="cover-img" @load="onImageLoad(item, $event)"
                  :style="{height:item.height+'px'}"></image>
-          <text class="h5">{{item.desc}}</text>
+          <text class="h5 image-desc">{{item.title}}</text>
         </div>
       </cell>
     </waterfall>
@@ -63,14 +63,13 @@
           "channel": "baidu",
           "os": "1",
           "packId": "10",
-          "page": "7",
+          "page": this.pageIndex,
           "size": "20",
           "tagId": "3",
           "type": "1",
           "version": "7"
         };
         let dataString = 'req=' + encodeURI(JSON.stringify(params));
-        this.$alert(dataString);
         this.$post({
           url: this.loadUrl,
           headers: {
@@ -79,8 +78,7 @@
           },
           data: dataString,
         }).then(res => {
-          let resData = res.results;
-
+          let resData = res.data;
           if (resData && resData.length > 0) {
             for (let idx = 0; idx < resData.length; idx++) {
               resData[idx].height = 460;
@@ -113,6 +111,12 @@
 
 <style lang="scss" src="bui-weex/src/css/buiweex.scss"></style>
 <style scoped>
+  .image-desc {
+    font-size: 24px;
+    line-height: 26px;
+    margin: 0 10px 10px 10px;
+  }
+
   .refresh {
     display: flex;
     flex-direction: row;

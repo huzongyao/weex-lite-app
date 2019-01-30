@@ -44,6 +44,7 @@
         let url = this.newTime ? this.urls.listFollow + this.newTime : this.urls.listFirst;
         this.$get({
           url: url,
+          headers: {'user-agent': 'Android'},
         }).then(res => {
           let articles = res.datas;
           if (articles && articles.length > 0) {
