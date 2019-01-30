@@ -24,6 +24,7 @@
           {name: '河汛热点', icon: 'ion-arrow-graph-up-right', link: 'hexun-main.js'},
           {name: '网亦新闻', icon: 'ion-planet', link: 'wangyi-main.js'},
           {name: 'Gank妹纸', icon: 'ion-images', link: 'meizhi-flow.js'},
+          {name: '佑佑妹纸', icon: 'ion-social-snapchat-outline', link: 'youyou-flow.js'},
         ]
       }
     },
