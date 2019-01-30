@@ -1,15 +1,19 @@
 <template>
   <div style="background-color: #f1f1f1">
     <bui-header title="Gank 妹纸" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
-    <waterfall @loadmore="loadMoreData" loadmoreoffset="20" column-count="2" column-gap="0">
-      <refresh class="refresh center" @refresh="onPullRefresh" :display="showRefresh ? 'show' : 'hide'">
-        <loading-indicator class="indicator"></loading-indicator>
-        <text class="refreshText">Loading...</text>
+    <waterfall @loadmore="loadMoreData" loadmoreoffset="200" column-count="2" column-gap="0">
+      <!--下拉刷新控件-->
+      <refresh class="refresh" @refresh="onPullRefresh" @pullingdown="onPullingDown"
+               :display="showRefresh ? 'show' : 'hide'">
+        <text class="refresh-text">{{refreshText}}</text>
+        <loading-indicator class="refresh-indicator"></loading-indicator>
       </refresh>
+      <!--图片瀑布流列表-->
       <cell v-for="(item, idx) in imageList" :key="idx">
         <div class="flex1 center cover-box">
           <image :ref='idx' :src="item.url" class="cover-img" @load="onImageLoad(item, $event)"
-                 :style="{height:item.height + 'px'}"></image>
+                 :style="{height:item.height+'px'}"></image>
+          <text class="h5">{{item.desc}}</text>
         </div>
       </cell>
     </waterfall>
@@ -33,12 +37,19 @@
         showRefresh: false,
         pageIndex: 1,
         imageList: [],
+        refreshText: '下拉刷新',
       }
     },
     mounted() {
+      this.showLoading = true;
       this.refreshPageData();
     },
     methods: {
+      onPullingDown(event) {
+        if (Math.abs(event.pullingDistance) >= 100) {
+          this.refreshText = '释放立即刷新';
+        }
+      },
       onPullRefresh() {
         this.showRefresh = true;
         this.refreshPageData();
@@ -85,14 +96,22 @@
 <style lang="scss" src="bui-weex/src/css/buiweex.scss"></style>
 <style scoped>
   .refresh {
-    width: 750px;
-    height: 180px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 16px;
   }
 
-  .indicator {
-    margin-top: 16px;
-    height: 60px;
-    width: 60px;
+  .refresh-text {
+    color: #3399ff;
+    font-size: 30px;
+    margin-right: 20px;
+  }
+
+  .refresh-indicator {
+    height: 40px;
+    width: 40px;
     color: #238FFF;
   }
 
