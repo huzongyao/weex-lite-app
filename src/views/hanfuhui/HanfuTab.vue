@@ -8,7 +8,7 @@
     </refresh>
     <!--图片瀑布流列表-->
     <cell v-for="(item, idx) in imageList" :key="idx">
-      <div class="flex1 center cover-box">
+      <div class="flex1 center cover-box" @click="onImageClick(item)">
         <image :src="item.FaceSrc+'_300x300.jpg'" class="cover-img"></image>
         <text class="h5 image-desc">{{item.Name}}</text>
       </div>
@@ -43,6 +43,9 @@
       this.refreshPageData();
     },
     methods: {
+      onImageClick(item) {
+        this.$push('hanfu-album.js', {id: item.ID})
+      },
       onPullingDown(event) {
         if (Math.abs(event.pullingDistance) >= 100) {
           this.refreshText = '释放立即刷新';

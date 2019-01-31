@@ -83,7 +83,7 @@
     margin: 10px 20px;
     padding: 16px;
     border-radius: 5px;
-    background-color: #fff;
+    background-color: #ffffff;
   }
 
   .list-item:active {
