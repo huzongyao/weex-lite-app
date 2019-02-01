@@ -90,6 +90,9 @@
         this.fetchHotArticles(next);
       },
       onItemClick(item) {
+        if (item.shareUrl) {
+          this.$push('simple-browser.js', {url: item.shareUrl})
+        }
       }
     }
   }
