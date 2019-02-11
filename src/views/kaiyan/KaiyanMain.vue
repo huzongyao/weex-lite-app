@@ -16,9 +16,11 @@
     <!--加载弹出层-->
     <wxc-loading :show="showLoading"></wxc-loading>
     <!--视频播放弹窗-->
-    <bui-dialog v-model="showVideoPopup" height="480">
-      <video class="video-player" :src="videoSrc" autoplay controls @finish="onVideoClose" @fail="onVideoClose"></video>
-    </bui-dialog>
+    <bui-popup v-model="showVideoPopup" pos="top" backgroundColor="#000000" height="510">
+      <video class="video-player" :src="curVideoUrl" auto-play="true" @finish="onVideoClose"
+             @fail="onVideoClose"></video>
+      <text class="h5 span1 video-title">{{curVideoTitle}}</text>
+    </bui-popup>
   </div>
 </template>
 
@@ -31,20 +33,15 @@
     computed: {
       getCoverImg() {
         return (item) => {
-          if (item.data && item.data.content && item.data.content.data && item.data.content.data.cover
-            && item.data.content.data.cover.feed) {
+          try {
             return item.data.content.data.cover.feed;
+          } catch (err) {
           }
           return '';
         }
       },
       getCoverTitle() {
-        return (item) => {
-          if (item.data && item.data.content && item.data.content.data && item.data.content.data.title) {
-            return item.data.content.data.title;
-          }
-          return '';
-        }
+        return this.getValidTitle;
       }
     },
     data() {
@@ -58,7 +55,8 @@
         showVideoPopup: false,
         showLoading: false,
         pageIndex: 0,
-        videoSrc: '',
+        curVideoUrl: '',
+        curVideoTitle: '',
       }
     },
     mounted() {
@@ -96,11 +94,27 @@
         this.fetchHotArticles(next);
       },
       onItemClick(item) {
-        if (item.data && item.data.content && item.data.content.data && item.data.content.data.playUrl) {
-          let videoUrl = item.data.content.data.playUrl;
-          this.videoSrc = videoUrl;
+        this.curVideoUrl = this.getValidVideoUrl(item);
+        if (this.curVideoUrl) {
+          this.curVideoTitle = this.getValidTitle(item);
           this.showVideoPopup = true;
         }
+      },
+      //获取视频地址
+      getValidVideoUrl(item) {
+        try {
+          return item.data.content.data.playUrl;
+        } catch (err) {
+        }
+        return '';
+      },
+      //获取视频标题
+      getValidTitle(item) {
+        try {
+          return item.data.content.data.title;
+        } catch (err) {
+        }
+        return '';
       },
       onVideoClose() {
         this.showVideoPopup = false;
@@ -140,8 +154,16 @@
     margin: 10px 0;
   }
 
+  .video-title {
+    font-size: 24px;
+    line-height: 26px;
+    margin: 10px 10px;
+    color: #cccccc;
+    lines: 2;
+  }
+
   .video-player {
-    width: 600px;
-    height: 400px;
+    width: 750px;
+    height: 430px;
   }
 </style>
