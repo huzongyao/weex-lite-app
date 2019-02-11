@@ -1,0 +1,147 @@
+<template>
+  <div style="background-color: #f1f1f1">
+    <bui-header title="开演日报" :leftItem="leftItem" @leftClick="$pop()"></bui-header>
+    <bui-dropload @loading="fetchHotArticles" @refresh="refreshArticles">
+      <cell v-for="(item, idx) in articleList" :key="idx">
+        <div v-if="item.type==='textCard'">
+          <text class="h3 divider-text">{{item.data.text}}</text>
+        </div>
+        <div v-else-if="item.type==='followCard'" class="list-item" @click="onItemClick(item)">
+          <bui-image class="list-img" :src="getCoverImg(item)"
+                     @click="onItemClick(item)"></bui-image>
+          <text class="h5 span1 list-title">{{getCoverTitle(item)}}</text>
+        </div>
+      </cell>
+    </bui-dropload>
+    <!--加载弹出层-->
+    <wxc-loading :show="showLoading"></wxc-loading>
+    <!--视频播放弹窗-->
+    <bui-dialog v-model="showVideoPopup" height="480">
+      <video class="video-player" :src="videoSrc" autoplay controls @finish="onVideoClose" @fail="onVideoClose"></video>
+    </bui-dialog>
+  </div>
+</template>
+
+<script>
+  import {WxcLoading} from 'weex-ui';
+
+  export default {
+    name: "kaiyan-main",
+    components: {WxcLoading},
+    computed: {
+      getCoverImg() {
+        return (item) => {
+          if (item.data && item.data.content && item.data.content.data && item.data.content.data.cover
+            && item.data.content.data.cover.feed) {
+            return item.data.content.data.cover.feed;
+          }
+          return '';
+        }
+      },
+      getCoverTitle() {
+        return (item) => {
+          if (item.data && item.data.content && item.data.content.data && item.data.content.data.title) {
+            return item.data.content.data.title;
+          }
+          return '';
+        }
+      }
+    },
+    data() {
+      return {
+        firstUrl: 'http://baobab.kaiyanapp.com/api/v5/index/tab/feed',
+        newsUrl: '',
+        leftItem: {
+          icon: 'ion-android-arrow-back'
+        },
+        articleList: [],
+        showVideoPopup: false,
+        showLoading: false,
+        pageIndex: 0,
+        videoSrc: '',
+      }
+    },
+    mounted() {
+      this.showLoading = true;
+      this.refreshArticles()
+    },
+    methods: {
+      // 接着上一次加载
+      fetchHotArticles(next) {
+        this.$get({
+          url: this.newsUrl,
+          headers: {'user-agent': 'Android'},
+        }).then(res => {
+          let articles = res.itemList;
+          this.newsUrl = res.nextPageUrl;
+          if (articles && articles.length > 0) {
+            if (this.pageIndex <= 0) {
+              this.articleList = articles;
+            } else {
+              this.articleList = this.articleList.concat(articles);
+            }
+            this.pageIndex += 1;
+          }
+          next && next();
+          this.showLoading = false;
+        }).catch(() => {
+          next && next();
+          this.showLoading = false;
+        });
+      },
+      // 从头加载
+      refreshArticles(next) {
+        this.pageIndex = 0;
+        this.newsUrl = this.firstUrl;
+        this.fetchHotArticles(next);
+      },
+      onItemClick(item) {
+        if (item.data && item.data.content && item.data.content.data && item.data.content.data.playUrl) {
+          let videoUrl = item.data.content.data.playUrl;
+          this.videoSrc = videoUrl;
+          this.showVideoPopup = true;
+        }
+      },
+      onVideoClose() {
+        this.showVideoPopup = false;
+      }
+    }
+  }
+</script>
+
+<style lang="scss" src="bui-weex/src/css/buiweex.scss"></style>
+<style scoped>
+  .list-item {
+    margin: 5px 10px;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #fff;
+  }
+
+  .list-item:active {
+    background-color: #f6f6f6;
+  }
+
+  .divider-text {
+    margin: 20px 30px 0 30px;
+    color: #238FFF;
+  }
+
+  .list-img {
+    width: 710px;
+    height: 411px;
+    background-color: #dddddd;
+    border-radius: 4px;
+  }
+
+  .list-title {
+    font-size: 24px;
+    line-height: 26px;
+    margin: 10px 0;
+  }
+
+  .video-player {
+    width: 600px;
+    height: 400px;
+  }
+</style>

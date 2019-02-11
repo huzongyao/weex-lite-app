@@ -51,6 +51,10 @@
             link: 'https://h5.m.taobao.com/trip/weex-ui/index.html?_wx_tpl=' +
             'https%3a%2f%2fh5.m.taobao.com%2ftrip%2fweex-ui%2fdemo%2findex.native-min.js&actionbar=true'
           },
+          {
+            name: 'Weex-AM-UI', desc: 'Weex-AMUI',
+            link: 'https://hminghe.github.io/weex-amui/release/native/index.js'
+          }
         ],
         cellStyle: {"background-color:active": "#f2f2f2"},
       };
