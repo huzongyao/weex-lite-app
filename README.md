@@ -12,6 +12,11 @@ npm run build:prod
 ```
 
 ### 详情
+#### 使用Weex加速开发
+1. Weex拥有和ReactNative类似的特点：跨平台，执行效率高，可动态更新
+2. Weex也有他的局限：支持的控件和模块有限，需要自己扩展。相对于H5，可用的功能也有限
+3. 使用Weex打造自己的小程序平台
+
 #### 快速体验
 1. 使用Weex playground扫描二维码体验：http://weex-project.io/tools/playground.html
 2. 可以下载我的WeexApp体验(类似于Weex playground)：https://github.com/huzongyao/WeexAppFrame
@@ -22,8 +27,10 @@ npm run build:prod
 4. 由于目前bui-weex目前不支持web方式，所以只能用客户端体验。
 
 #### screenshot
-|之乎日报        	|推库           |裹壳  	|
+|主框架        	|汉服           |时光电影  	|
 | ------------- |:-------------:| ----------:|
+| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/main.png?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/hanfu.png?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/mtime.png?raw=true) |
+|之乎日报        	|推库           |裹壳  	|
 | ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/zhihu.gif?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/tuiku.gif?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/guoke.gif?raw=true) |
 
 #### 数据接口
