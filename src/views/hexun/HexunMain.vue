@@ -78,7 +78,9 @@
         this.fetchHotArticles(next);
       },
       onItemClick(item) {
-        this.$push('hexun-detail.js', {id: item.id})
+        if (item.id) {
+          this.$push('hexun-detail.js', {id: item.id})
+        }
       }
     }
   }

@@ -28,6 +28,7 @@
           {name: '佑佑妹纸', icon: 'ion-social-snapchat-outline', link: 'youyou-flow.js'},
           {name: '汉服美', icon: 'ion-bowtie', link: 'hanfu-main.js'},
           {name: '开演日报', icon: 'ion-eye', link: 'kaiyan-main.js'},
+          {name: '时光电影', icon: 'ion-android-film', link: 'time-movie-main.js'},
         ]
       }
     },
