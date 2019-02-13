@@ -25,6 +25,7 @@ npm run build:prod
 
 3. js打包入口地址：https://huzongyao.github.io/weex-lite-app/assets/splash-page.js
 4. 由于目前bui-weex目前不支持web方式，所以只能用客户端体验。
+5. 为了节约打包时间，在entry目录下一些暂时不需要调试的js放到了entry_目录下，如果需要全部重打包需要先移出来
 
 #### screenshot
 |主框架        	|汉服           |时光电影  	|
