@@ -17,9 +17,7 @@
     name: "tab-life",
     data() {
       return {
-        iconApps: [
-          {name: '快递查询', icon: 'ion-android-archive', link: 'kuai-di-main.js'},
-        ]
+        iconApps: []
       }
     },
     mounted() {
