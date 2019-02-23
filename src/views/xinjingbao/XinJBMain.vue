@@ -14,9 +14,10 @@
       </cell>
       <!--文章列表-->
       <cell v-for="(item, idx) in articleList" :key="idx">
-        <div class="flex-row list-item" @click="onItemClick(item)">
-          <bui-image class="list-img" :src="getImageUrl(item)" @click="onItemClick(item)"></bui-image>
-          <text class="h4 span1 list-title">{{getItemTitle(item)}}</text>
+        <!--图文类型-->
+        <div v-if="item.type==='1'" class="flex-row list-item" @click="onItemClick(item)">
+          <image class="list-img" resize="cover" :src="item.row.cover" @click="onItemClick(item)"></image>
+          <text class="h4 span1 list-title">{{item.row.title}}</text>
         </div>
       </cell>
       <wxc-loading :show="showLoading"></wxc-loading>
@@ -45,29 +46,13 @@
         currentPage: 1,
       };
     },
-    computed: {
-      getImageUrl() {
-        return (item) => {
-          if (item.row && item.row.cover) {
-            return item.row.cover;
-          }
-          return '';
-        }
-      },
-      getItemTitle() {
-        return (item) => {
-          if (item.row && item.row.title) {
-            return item.row.title;
-          }
-          return '';
-        }
-      }
-    },
+    computed: {},
     mounted() {
       this.showLoading = true;
       this.refreshPage()
     },
     methods: {
+      // 加载下一页
       loadNextPage(next) {
         let url = this.urls.listUrl + this.currentPage;
         this.$get({
@@ -90,6 +75,7 @@
           this.showLoading = false;
         });
       },
+      // 刷新页面
       refreshPage(next) {
         this.currentPage = 1;
         this.loadNextPage(next);
@@ -100,11 +86,30 @@
         }).catch(() => {
         });
       },
+      // Banner点击事件
       onBannerClick(item) {
-
+        switch (item.focus_type) {
+          case '1':
+            if (item.focus_relate_uuid) {
+              this.$push('xinjingbao-detail.js', {id: item.focus_relate_uuid})
+            }
+            break;
+          case '4':
+            if (item.focus_url) {
+              this.$push('simple-browser.js', {url: item.focus_url})
+            }
+            break;
+        }
       },
+      // 卡片点击事件
       onItemClick(item) {
-
+        switch (item.type) {
+          case '1':
+            if (item.row.uuid) {
+              this.$push('xinjingbao-detail.js', {id: item.row.uuid})
+            }
+            break;
+        }
       }
     }
   }
