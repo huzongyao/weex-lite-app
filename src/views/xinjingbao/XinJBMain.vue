@@ -57,7 +57,7 @@
         let url = this.urls.listUrl + this.currentPage;
         this.$get({
           url: url,
-          headers: {'user-agent': 'Android'},
+          headers: {'user-agent': 'Android', version: 'v105'},
         }).then(res => {
           let articles = res.data;
           if (articles && articles.length > 0) {
