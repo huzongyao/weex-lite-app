@@ -15,11 +15,11 @@ npm run build:prod
 #### 使用Weex加速开发
 1. Weex拥有和ReactNative类似的特点：跨平台，执行效率高，可动态更新
 2. Weex也有他的局限：支持的控件和模块有限，需要自己扩展。相对于H5，可用的功能也有限
-3. 使用Weex打造自己的小程序平台
+3. 使用Weex打造自己的小程序平台，有空就持续更新
 
 #### 快速体验
-1. 使用Weex playground扫描二维码体验：http://weex-project.io/tools/playground.html
-2. 可以下载我的WeexApp体验(类似于Weex playground)：https://github.com/huzongyao/WeexAppFrame
+1. 使用[Weex playground](http://weex-project.io/tools/playground.html)扫描二维码体验(并不完全支持所有功能)
+2. 可以下载我的[WeexApp体验(类似于Weex playground)](https://github.com/huzongyao/WeexAppFrame)(推荐)
 
 ![image](https://github.com/huzongyao/weex-lite-app/blob/master/misc/qr_splash_page.png?raw=true)
 

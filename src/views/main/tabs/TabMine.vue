@@ -1,6 +1,7 @@
 <template>
   <div>
     <bui-header title="我的"></bui-header>
+    <!--选项列表-->
     <scroller>
       <bui-cell title="设置" :cellStyle="cellStyle" class="first-line">
         <bui-icon slot="label" class="left-ic" name="ion-ios-gear-outline"></bui-icon>
@@ -38,7 +39,14 @@
             }
           });
         } else {
-          this.$toast('没有qrCode模块，无法扫一扫！');
+          // 不支持扫码
+          this.$confirm('目前所使用的Weex框架并不支持该功能，去更新最新的WeexApp框架么?', res => {
+            if (res === '确定') {
+              this.$push('simple-browser.js', {
+                url: 'https://github.com/huzongyao/WeexAppFrame/releases'
+              })
+            }
+          });
         }
       }
     },
