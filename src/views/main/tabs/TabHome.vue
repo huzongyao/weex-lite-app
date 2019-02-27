@@ -48,6 +48,7 @@
           }, {
             title: '实用工具', apps: [
               {name: '快递查询', icon: 'ion-android-archive', link: 'kuai-di-main.js'},
+              {name: '天气预报', icon: 'ion-android-cloud-circle', link: 'weather-main.js'},
             ]
           }
         ]
