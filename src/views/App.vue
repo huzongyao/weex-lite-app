@@ -21,7 +21,7 @@
     },
     methods: {
       jumpTo() {
-        this.$push('splash-page.js', {actionbar: true});
+        this.$push('splash-page.js', {actionbar: false});
       }
     }
   }

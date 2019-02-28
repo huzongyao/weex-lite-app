@@ -28,11 +28,8 @@ npm run build:prod
 5. 为了节约打包时间，在entry目录下一些暂时不需要调试的js放到了entry_目录下，如果需要全部重打包需要先移出来
 
 #### screenshot
-|主框架        	|汉服           |时光电影  	|
-| ------------- |:-------------:| ----------:|
-| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/main.png?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/hanfu.png?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/mtime.png?raw=true) |
-|之乎日报        	|推库           |裹壳  	|
-| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/zhihu.gif?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/tuiku.gif?raw=true)| ![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/guoke.gif?raw=true) |
+* 截图展示
+![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/screenshot.png?raw=true)
 
 #### 数据接口
 * 之乎日报：http://daily.zhihu.com/
