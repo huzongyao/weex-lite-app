@@ -29,7 +29,7 @@ npm run build:prod
 
 #### screenshot
 * 截图展示
-![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/screenshot.png?raw=true)
+![screenshot](https://github.com/huzongyao/weex-lite-app/blob/master/misc/screenshot.jpg?raw=true)
 
 #### 数据接口
 * 之乎日报：http://daily.zhihu.com/
