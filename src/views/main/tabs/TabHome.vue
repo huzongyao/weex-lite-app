@@ -30,6 +30,7 @@
               {name: '网亦新闻', icon: 'ion-planet', link: 'wangyi-main.js'},
               {name: '大图News', icon: 'ion-aperture', link: 'gov-picture-news.js'},
               {name: '薪京报', icon: 'ion-android-list', link: 'xinjingbao-main.js'},
+              {name: '光茗日报', icon: 'ion-ios-world', link: 'guangming-main.js'},
             ]
           }, {
             title: '技术资讯', apps:
