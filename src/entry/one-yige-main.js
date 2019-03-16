@@ -1,4 +1,4 @@
-import App from 'src/views/wangyi/WangyiMain'
+import App from 'src/views/oneyige/OneYigeMain'
 import buiweex from 'bui-weex';
 
 Vue.use(buiweex);

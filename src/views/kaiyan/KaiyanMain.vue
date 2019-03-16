@@ -117,7 +117,6 @@
         return '';
       },
       onVideoClose() {
-        this.showVideoPopup = false;
       }
     }
   }

@@ -17,8 +17,8 @@
           <text class="h4 span1 list-title">{{item.title}}</text>
         </div>
       </cell>
-      <wxc-loading :show="showLoading"></wxc-loading>
     </bui-dropload>
+    <wxc-loading :show="showLoading"></wxc-loading>
   </div>
 </template>
 
