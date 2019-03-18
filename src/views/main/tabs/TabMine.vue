@@ -16,26 +16,53 @@
         <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
       </bui-cell>
     </scroller>
+    <!--上拉菜单,选择扫码打开方式-->
+    <bui-actionsheet
+      :title="qrSelectTitle"
+      :items="qrOptions"
+      v-model="showQrSelection"
+      @itemClick="qrItemClick"
+      @btnClick="showQrSelection = false">
+    </bui-actionsheet>
   </div>
 </template>
 
 <script>
   const qrCode = weex.requireModule('qrCode');
+  const clipboard = weex.requireModule('clipboard');
 
   export default {
     name: "tab-mine",
     data() {
       return {
         cellStyle: {"background-color:active": "#f2f2f2"},
+        showQrSelection: false,
+        qrOptions: ['WeexApp打开', 'WebView打开', '复制内容'],
+        qrSelectTitle: '',
+        qrContent: '',
       }
     },
     methods: {
+      // 扫码打开方式选择框
+      qrItemClick(item, index) {
+        this.showQrSelection = false;
+        if (index === 0) {
+          this.$push(this.qrContent)
+        } else if (index === 1) {
+          this.$push('simple-browser.js', {url: this.qrContent})
+        } else if (index === 2) {
+          clipboard.setString(this.qrContent);
+          this.$toast('已复制到剪贴板!');
+        }
+      },
       // 扫一扫
       onQRScanClick() {
         if (qrCode) {
           qrCode.startScan({}, res => {
-            if (res) {
-              this.$toast(res);
+            if (res && res.content) {
+              this.qrContent = res.content;
+              this.qrSelectTitle = '选择打开方式:\n' + res.content;
+              this.showQrSelection = true;
             }
           });
         } else {
@@ -53,6 +80,7 @@
   }
 </script>
 
+<style lang="scss" src="bui-weex/src/css/buiweex.scss"></style>
 <style scoped>
   .first-line {
     margin-top: 20px;
