@@ -11,7 +11,6 @@
 
 <script>
   const globalEvent = weex.requireModule('globalEvent');
-  import MixCommon from '../../mixins/common'
   import TabMine from './tabs/TabMine'
   import TabHome from './tabs/TabHome'
   import TabExplore from './tabs/TabExplore'
@@ -20,7 +19,6 @@
   export default {
     name: "main-page",
     components: {TabMine, TabHome, TabExplore, TabLife},
-    mixins: [MixCommon],
     data() {
       return {
         currentTab: 0,
@@ -40,7 +38,6 @@
       }
     },
     mounted() {
-      this._registerBackListener();
     }
   }
 </script>
