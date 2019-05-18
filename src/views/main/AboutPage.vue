@@ -32,11 +32,10 @@
         },
         sysInfo: {},
         appInfo: {
-          'Project repository': 'https://github.com/huzongyao/weex-lite-app',
+          'Source Code': 'https://github.com/huzongyao/weex-lite-app',
+          'Framework Github': 'https://github.com/huzongyao/WeexAppFrame',
           'My GitHub': 'https://github.com/huzongyao',
           'My Blog': 'https://huzongyao.github.io/',
-          'ITEye Blog': 'https://hzy3774.iteye.com/',
-          'Sina Weibo': 'https://weibo.com/hzy3774',
           'GMail': 'hzy3774@gmail.com',
           'QQ': '377406997',
           'Wechat': 'hzy3774',
