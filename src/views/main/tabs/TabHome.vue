@@ -41,7 +41,6 @@
             title: '休闲娱乐', apps: [
               {name: 'Gank妹纸', icon: 'ion-images', link: 'meizhi-flow.js'},
               {name: '佑佑妹纸', icon: 'ion-social-snapchat-outline', link: 'youyou-flow.js'},
-              {name: '汉服美', icon: 'ion-bowtie', link: 'hanfu-main.js'},
               {name: '开演日报', icon: 'ion-eye', link: 'kaiyan-main.js'},
               {name: '时光电影', icon: 'ion-android-film', link: 'time-movie-main.js'},
               {name: '旺一个', icon: 'ion-social-pinterest-outline', link: 'one-yige-main.js'},
@@ -50,6 +49,7 @@
             title: '实用工具', apps: [
               {name: '快递查询', icon: 'ion-android-archive', link: 'kuai-di-main.js'},
               {name: '天气预报', icon: 'ion-android-cloud-circle', link: 'weather-main.js'},
+              {name: '计算器', icon: 'ion-calculator', link: 'calculator-main.js'},
             ]
           }
         ]
