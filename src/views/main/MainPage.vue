@@ -10,22 +10,19 @@
 </template>
 
 <script>
-  const globalEvent = weex.requireModule('globalEvent');
   import TabMine from './tabs/TabMine'
   import TabHome from './tabs/TabHome'
   import TabExplore from './tabs/TabExplore'
-  import TabLife from './tabs/TabLife'
 
   export default {
     name: "main-page",
-    components: {TabMine, TabHome, TabExplore, TabLife},
+    components: {TabMine, TabHome, TabExplore},
     data() {
       return {
         currentTab: 0,
         tabItems: [
           {icon: "ion-home", title: "首页", view: 'tab-home'},
           {icon: "ion-planet", title: "探索", view: 'tab-explore'},
-          {icon: "ion-heart", title: "生活", view: 'tab-life'},
           {icon: "ion-android-person", title: "我的", view: 'tab-mine'}
         ]
       }

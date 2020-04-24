@@ -1,4 +1,4 @@
-import App from 'src/views/xinjingbao/XinJBDetail'
+import App from 'src/views/weather/WeatherMain'
 import buiweex from 'bui-weex';
 
 Vue.use(buiweex);
@@ -6,3 +6,4 @@ Vue.use(buiweex);
 if (!App) {
   console.log('null')
 }
+
