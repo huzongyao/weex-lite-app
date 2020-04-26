@@ -3,12 +3,16 @@
     <bui-header title="我的"></bui-header>
     <!--选项列表-->
     <scroller>
-      <bui-cell title="设置" :cellStyle="cellStyle" class="first-line">
+      <bui-cell title="设置" :cellStyle="cellStyle" class="first-line" @click="onSettingsClick">
         <bui-icon slot="label" class="left-ic" name="ion-ios-gear-outline"></bui-icon>
         <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
       </bui-cell>
       <bui-cell title="扫一扫" :cellStyle="cellStyle" @click="onQRScanClick">
         <bui-icon slot="label" class="left-ic" name="ion-android-expand"></bui-icon>
+        <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
+      </bui-cell>
+      <bui-cell title="工厂测试" :cellStyle="cellStyle" @click="$push('factory-page.js')">
+        <bui-icon slot="label" class="left-ic" name="ion-bug"></bui-icon>
         <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
       </bui-cell>
       <bui-cell title="关于" :cellStyle="cellStyle" @click="$push('about-page.js')">
@@ -43,6 +47,9 @@
       }
     },
     methods: {
+      onSettingsClick() {
+        this.$toast('暂时还未实现!');
+      },
       // 扫码打开方式选择框
       qrItemClick(item, index) {
         this.showQrSelection = false;
