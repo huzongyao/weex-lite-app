@@ -31,6 +31,10 @@
         <bui-icon slot="label" class="left-ic" name="ion-ios-calculator"></bui-icon>
         <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
       </bui-cell>
+      <bui-cell title="编码器信息" :cellStyle="cellStyle" @click="onCodecInfoClick">
+        <bui-icon slot="label" class="left-ic" name="ion-ios-film"></bui-icon>
+        <bui-icon slot="action" name="ion-ios-arrow-right"></bui-icon>
+      </bui-cell>
     </scroller>
   </div>
 </template>
@@ -52,6 +56,16 @@
       }
     },
     methods: {
+      //获取系统编解码器信息
+      onCodecInfoClick() {
+        deviceInfo.getCodecInfo(res => {
+          if (res) {
+            this.$alert(JSON.stringify(res, null, '\t'));
+          } else {
+            this.$toast('结果为空!');
+          }
+        });
+      },
       // 输入法信息
       onInputMethodsInfoClick() {
         deviceInfo.getInputMethodInfo(res => {
